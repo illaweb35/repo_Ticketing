@@ -21,7 +21,7 @@ class Ticket
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="Merci de saisir votre nom de famille !")
-     * @Assert\Lenght(
+     * @Assert\Length(
      *      min = 3,
      *      max = 50,
      *      minMessage = "Votre nom de famille doit comporter au moins {{ limit }} caractères.",

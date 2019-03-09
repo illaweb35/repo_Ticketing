@@ -34,17 +34,17 @@ class Resa
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\NotBlank(
+     *      message="Merci de choisir une date pour votre prochaine visite au musée du Louvre !")
      * @Assert\Range(
      *      min = "today",
      *      max = "+1 year",
-     *      minMessage = "La date de visite ne peut-être antérieure à {{ limit }}.,
-     *      maxMessage = "Aucun billet ne peut_-être vendu pour une date de visite supérieur à {{ limit }}")
-     * @Assert\NotEquelTo(
+     *      minMessage="La date de visite ne peut pas être antérieure à {{ limit }}.",
+     *      maxMessage="Aucun billet ne peut-être acheté pour une date de visite  supérieur à 1 an !")
+     * @Assert\NotEqualTo(
      *      "tuesday",
-     *      message = "Le musée est fermé le mardi.)
+     *      message="Le musée est fermé le mardi.")
      * @AcmeAssert\CloseDays
-     * @Assert\NotBlank(
-     *      message = "Merci de choisir une date pour votre prochaine visite au musée du Louvre !")
      */
     private $visitDate;
 
@@ -60,13 +60,13 @@ class Resa
      *      message = "Merci de sélection le nombre de billet que vous souhaité !")
      * @Assert\GreaterThan(
      *      0,
-     *      messag e= "Zéro ticket , vous êtes sûr !)
+     *      message="La valeur doit être supérieure à 0 !")
      * @Assert\Range(
-     *      min = 1,
-     *      max = 10,
-     *      minMessage = "Vous devez commander au minimum {{ limit }} billet.",
-     *      maxMessage = "Au delà de {{ limit }} billets, merci de contacter le musée pour les tarifs de groupe")
-     * @AcmeAssert\Fulltickets
+     *      min=1,
+     *      max=10,
+     *      minMessage="Vous devez commandez au moins {{ limit }} billet lors de la commande",
+     *      maxMessage="Au delà de {{ limit }} billets, merci de contacter le musée pour les tarifs de groupe")
+     * @AcmeAssert\FullTickets
      */
     private $nbTickets;
 
