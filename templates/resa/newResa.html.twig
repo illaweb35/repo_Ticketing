@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Réservation{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css">
+{% endblock %}
+
+{% block body %}
+<div class="container my-5">
+    <div class="content ">
+        <div class="text-center">
+            <h1 class="title">
+                Réservation de vos billets
+            </h1>
+            <h3 class="subtitle">
+                pour votre prochaine visite au musée du Louvre
+            </h3>
+        </div>
+        <hr>
+        <div class="row justify-content-center">
+            {# Start Form #}
+            {{ form_start(form) }}
+            <form>
+                <fieldset>
+                    <div class="form-group">
+                        <label for="dateVisit">
+                            <strong>{{ form_label(form.visitDate) }}</strong>
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </div>
+                            </div>
+                            {{ form_widget(form.visitDate)}}
+                        </div>
+                        <img id="colorDate" src="{{asset('img/colorDate.svg')}}" alt="">
+                        <small>Réservation au guichet uniquement</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">
+                            <strong>{{ form_label(form.emailResa) }}</strong>
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">@</div>
+                            </div>
+                            {{ form_widget(form.emailResa) }}
+                            {{ form_errors(form.emailResa) }}
+                        </div>
+                        <small>Votre email pour la réception de votre commande</small>
+                    </div>
+                    <hr>
+                    <label for="nbTickets">
+                        <strong>Un billet par visiteur</strong>
+                    </label>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fas fa-ticket-alt"></i>
+                                </div>
+                            </div>
+                            {{ form_widget(form.nbTickets) }}
+                            {{ form_errors(form.nbTickets) }}
+                        </div>
+                        <small> (mini 1 et maxi 10)</small>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <label for="typeticket"><strong>Type de billet</strong>
+                        </label>
+                        {{ form_widget(form.typeTicket) }}
+                        {{ form_errors(form.typeTicket) }}
+                        <small>Demi-journée à partir de 14 Heures</small>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-outline-primary">Saisir les billets</button>
+                        <a href="{{ path('cancel_session') }}" class="btn btn-outline-default">Annuler</a>
+                    </div>
+                    {{ form_end(form) }}
+                </fieldset>
+            </form>
+            {# End Form #}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+<script src="{{ asset('js/datepicker.js')}}"></script>
+{% endblock %}

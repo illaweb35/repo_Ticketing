@@ -52,7 +52,7 @@ class Resa
      * @ORM\Column(type="boolean")
      * @AcmeAssert\HalfDay
      */
-    private $typeTicket;
+    private $typeTicket = true;
 
     /**
      * @ORM\Column(type="integer")

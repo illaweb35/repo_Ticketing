@@ -4,8 +4,23 @@
 
 {% block body %}
 <div class="container">
-    <div class="row">
-        <h1>Bienvenue</h1>
+    <div class="jumbotron mt-5">
+        <div class="container text-center mb-5">
+            <a href="{{ path('home_infos')}}" class="btn btn-outline-primary btn-sm">
+                infos pratiques
+            </a>
+        </div>
+        <div class="container text-center">
+            <h1 class="display-3">Musée du Louvre</h1>
+            <p class="lead">Bienvenue sur la billetterie du musée du Louvre.</p>
+            <hr class="my-4">
+            <p>Evitez les files d'attentes aux caisses, réservez dès maintenant.</p>
+            <p class="lead">
+                <a type="button" class="btn btn-outline-primary" href="{{ path('resa_new')}}">
+                    Commandez vos billets
+                </a>
+            </p>
+        </div>
     </div>
 </div>
 {% endblock %}

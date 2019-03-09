@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
+use App\Service\Holidays;
 
 /**
  * Class HomeController
@@ -30,10 +31,17 @@ class HomeController extends AbstractController
      * @Route("/infos", name="home_infos")
      * @return Response
      */
-    public function infos()
+    public function infos(Holidays $holiday)
     {
+        $year = new \Datetime();
+        $daysOff = $holiday->dayOff($year);
+        $holidays = $holiday->getHolidays($year);
 
-        return $this->render('home/infos.html.twig');
+        return $this->render('home/infos.html.twig', [
+            'daysOff' => $daysOff,
+            'holidays' => $holidays,
+            'year' => $year
+        ]);
     }
 
     /**

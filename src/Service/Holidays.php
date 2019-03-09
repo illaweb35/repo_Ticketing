@@ -5,7 +5,7 @@ class Holidays
 {
 
     /**
-     * Calculation of vacation dates
+     * calculating vacation dates for the current year
      *
      * @param \DateTime $value
      *

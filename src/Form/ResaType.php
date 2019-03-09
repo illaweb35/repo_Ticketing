@@ -9,7 +9,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Doctrine\DBAL\Types\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+
 
 class ResaType extends AbstractType
 {
@@ -18,6 +19,7 @@ class ResaType extends AbstractType
         $builder
 
             ->add('visitDate', DateType::class, [
+                'label'     => 'Date de votre visite au musée',
                 'widget'    => 'single_text',
                 'html5'     => false,
                 'attr'      => [
@@ -27,6 +29,7 @@ class ResaType extends AbstractType
                 ]
             ])
             ->add('emailResa', EmailType::class, [
+                'label' => 'Email de réception de votre commande',
                 'attr' => [
                     'palceholder' => 'email de réception de votre commande'
                 ]
