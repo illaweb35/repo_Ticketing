@@ -2,12 +2,21 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+
+use App\Entity\Ticket;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use App\Validator\Constraints as AcmeAssert;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ResaRepository")
+ * @ORM\HasLifecycleCallbacks()
+ * @UniqueEntity(
+ *      "codeResa",
+ *      message="Code de réservation inexistant, merci de renouveller la commande")
  */
 class Resa
 {
@@ -25,26 +34,52 @@ class Resa
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\Range(
+     *      min = "today",
+     *      max = "+1 year",
+     *      minMessage = "La date de visite ne peut-être antérieure à {{ limit }}.,
+     *      maxMessage = "Aucun billet ne peut_-être vendu pour une date de visite supérieur à {{ limit }}")
+     * @Assert\NotEquelTo(
+     *      "tuesday",
+     *      message = "Le musée est fermé le mardi.)
+     * @AcmeAssert\CloseDays
+     * @Assert\NotBlank(
+     *      message = "Merci de choisir une date pour votre prochaine visite au musée du Louvre !")
      */
     private $visitDate;
 
     /**
      * @ORM\Column(type="boolean")
+     * @AcmeAssert\HalfDay
      */
     private $typeTicket;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(
+     *      message = "Merci de sélection le nombre de billet que vous souhaité !")
+     * @Assert\GreaterThan(
+     *      0,
+     *      messag e= "Zéro ticket , vous êtes sûr !)
+     * @Assert\Range(
+     *      min = 1,
+     *      max = 10,
+     *      minMessage = "Vous devez commander au minimum {{ limit }} billet.",
+     *      maxMessage = "Au delà de {{ limit }} billets, merci de contacter le musée pour les tarifs de groupe")
+     * @AcmeAssert\Fulltickets
      */
     private $nbTickets;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message = "Merci de renseigner votre adresse email !")
+     * @Assert\Email()
      */
     private $emailResa;
 
     /**
      * @ORM\Column(type="float", nullable=true)
+     *
      */
     private $amountResa;
 
@@ -67,13 +102,23 @@ class Resa
     {
         $this->tickets = new ArrayCollection();
     }
-
-    public function getId(): ?int
+    /**
+     * Callback called every time we create a reservation
+     * @ORM\PrePersist
+     * @return void
+     */
+    public function prePersist()
+    {
+        if (empty($this->createdAt)) {
+            $this->createdAt = new \Datetime();
+        }
+    }
+    public function getId(): ? int
     {
         return $this->id;
     }
 
-    public function getCodeResa(): ?string
+    public function getCodeResa(): ? string
     {
         return $this->codeResa;
     }
@@ -85,7 +130,7 @@ class Resa
         return $this;
     }
 
-    public function getVisitDate(): ?\DateTimeInterface
+    public function getVisitDate(): ? \DateTimeInterface
     {
         return $this->visitDate;
     }
@@ -97,7 +142,7 @@ class Resa
         return $this;
     }
 
-    public function getTypeTicket(): ?bool
+    public function getTypeTicket(): ? bool
     {
         return $this->typeTicket;
     }
@@ -109,7 +154,7 @@ class Resa
         return $this;
     }
 
-    public function getNbTickets(): ?int
+    public function getNbTickets(): ? int
     {
         return $this->nbTickets;
     }
@@ -121,7 +166,7 @@ class Resa
         return $this;
     }
 
-    public function getEmailResa(): ?string
+    public function getEmailResa(): ? string
     {
         return $this->emailResa;
     }
@@ -133,31 +178,31 @@ class Resa
         return $this;
     }
 
-    public function getAmountResa(): ?float
+    public function getAmountResa(): ? float
     {
         return $this->amountResa;
     }
 
-    public function setAmountResa(?float $amountResa): self
+    public function setAmountResa(? float $amountResa): self
     {
         $this->amountResa = $amountResa;
 
         return $this;
     }
 
-    public function getPaymentTokenStripe(): ?string
+    public function getPaymentTokenStripe(): ? string
     {
         return $this->paymentTokenStripe;
     }
 
-    public function setPaymentTokenStripe(?string $paymentTokenStripe): self
+    public function setPaymentTokenStripe(? string $paymentTokenStripe): self
     {
         $this->paymentTokenStripe = $paymentTokenStripe;
 
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt(): ? \DateTimeInterface
     {
         return $this->createdAt;
     }

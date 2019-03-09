@@ -3,9 +3,11 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TicketRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Ticket
 {
@@ -18,21 +20,37 @@ class Ticket
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Merci de saisir votre nom de famille !")
+     * @Assert\Lenght(
+     *      min = 3,
+     *      max = 50,
+     *      minMessage = "Votre nom de famille doit comporter au moins {{ limit }} caractères.",
+     *      maxMessage = "Votre nom de famille ne peut pas contenir plus de {{ limit }} caractères")
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *      message = "Merci de saisir un prénom !")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Votre prénom doit comporter au moins {{ limit }} caractères",
+     *      maxMessage = "Votre prénom ne peut pas contenir plus de {{ limit }} caractères")
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\NotBlank(message = "Merci de saisir votre date de naissance !")
+     * @Assert\Date
      */
     private $birthday;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Country
      */
     private $country;
 
@@ -56,12 +74,24 @@ class Ticket
      */
     private $resa;
 
-    public function getId(): ?int
+    /**
+     * Callback called every time we create a reservation
+     * @ORM\PrePersist
+     * @return void
+     */
+    public function prePersist()
+    {
+        if (empty($this->createdAt)) {
+            $this->createdAt = new \Datetime();
+        }
+    }
+
+    public function getId(): ? int
     {
         return $this->id;
     }
 
-    public function getLastName(): ?string
+    public function getLastName(): ? string
     {
         return $this->lastName;
     }
@@ -73,7 +103,7 @@ class Ticket
         return $this;
     }
 
-    public function getFirstName(): ?string
+    public function getFirstName(): ? string
     {
         return $this->firstName;
     }
@@ -85,7 +115,7 @@ class Ticket
         return $this;
     }
 
-    public function getBirthday(): ?\DateTimeInterface
+    public function getBirthday(): ? \DateTimeInterface
     {
         return $this->birthday;
     }
@@ -97,7 +127,7 @@ class Ticket
         return $this;
     }
 
-    public function getCountry(): ?string
+    public function getCountry(): ? string
     {
         return $this->country;
     }
@@ -109,7 +139,7 @@ class Ticket
         return $this;
     }
 
-    public function getReducePrice(): ?bool
+    public function getReducePrice(): ? bool
     {
         return $this->reducePrice;
     }
@@ -121,7 +151,7 @@ class Ticket
         return $this;
     }
 
-    public function getPriceTicket(): ?float
+    public function getPriceTicket(): ? float
     {
         return $this->priceTicket;
     }
@@ -133,7 +163,7 @@ class Ticket
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt(): ? \DateTimeInterface
     {
         return $this->createdAt;
     }
@@ -145,12 +175,12 @@ class Ticket
         return $this;
     }
 
-    public function getResa(): ?Resa
+    public function getResa(): ? Resa
     {
         return $this->resa;
     }
 
-    public function setResa(?Resa $resa): self
+    public function setResa(? Resa $resa): self
     {
         $this->resa = $resa;
 
