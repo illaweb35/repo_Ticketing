@@ -19,32 +19,14 @@ class ResaRepository extends ServiceEntityRepository
         parent::__construct($registry, Resa::class);
     }
 
-    // /**
-    //  * @return Resa[] Returns an array of Resa objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findTicketsByDate($value)
     {
         return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
+            ->andWhere('r.dateVisit = :val')
             ->setParameter('val', $value)
-            ->orderBy('r.id', 'ASC')
-            ->setMaxResults(10)
+            ->join('r.tickets', 't')
+            ->select('COUNT(t.id)')
             ->getQuery()
-            ->getResult()
-        ;
+            ->getSingleScalarResult();
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Resa
-    {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }
