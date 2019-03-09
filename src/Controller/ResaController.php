@@ -3,13 +3,16 @@
 namespace App\Controller;
 
 use App\Entity\Resa;
+use App\Entity\Ticket;
 use App\Form\ResaType;
 use App\Service\GeneratorCodeResa;
+use App\Form\CollectionTicketsType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Service\CalculateTicketPrice;
 
 /**
  * Class ResaController
@@ -84,6 +87,56 @@ class ResaController extends AbstractController
             return $this->redirectToRoute('ticket_new');
         }
         return $this->render('resa/newResa.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+    /**
+     * Creation & management of Tickets
+     *
+     * @Route("/ticket/new", name="ticket_new")
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function newTicket(CalculateTicketPrice $ticketPrices, Request $request)
+    {
+        $resa = $this->verifSession();
+
+        // recovering the number of tickets requested
+        $tickets = $resa->getTickets();
+        $nbTickets = $resa->getNbTickets();
+
+        // check if the tickets have not already been created, otherwise creation
+        if ($resa->getTickets()->count() !== $nbTickets) {
+            for ($i = 0; $i <= $nbTickets - 1; $i++) {
+                $ticket = new Ticket();
+                $resa->addTicket($ticket);
+            }
+        }
+        // Tickets Form
+        $form = $this->createForm(CollectionTicketsType::class, $resa);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Initialization of the Reservation Amount
+            $totalPrice = 0;
+
+            // For each ticket generated, calculate the ticket price according to the age entered
+            foreach ($tickets as $ticket) {
+                $ticketPrice = $ticketPrices->calculatePrice($ticket->getReduceTicket(), $ticket->getBirthday());
+                $ticket->setPriceTicket($ticketPrice);
+                $totalPrice += $ticketPrice;
+                $this->manager->persist($ticket);
+            }
+            // save the amount of the reservation
+            $resa->setAmountResa($totalPrice);
+
+            //  Persist the info and save in session
+            $this->manager->persist($resa);
+            $this->session->set('resa', $resa);
+
+            return $this->redirectToRoute('resa_verif');
+        }
+        return $this->render('resa/newTicket.html.twig', [
             'form' => $form->createView()
         ]);
     }

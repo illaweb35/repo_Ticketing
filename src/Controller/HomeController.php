@@ -5,7 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
-use App\Service\Holidays;
+use App\Service\CalculateHolidays;
 
 /**
  * Class HomeController
@@ -31,7 +31,7 @@ class HomeController extends AbstractController
      * @Route("/infos", name="home_infos")
      * @return Response
      */
-    public function infos(Holidays $holiday)
+    public function infos(CalculateHolidays $holiday)
     {
         $year = new \Datetime();
         $daysOff = $holiday->dayOff($year);
