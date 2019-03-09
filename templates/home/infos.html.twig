@@ -1,0 +1,180 @@
+{% extends 'base.html.twig'%}
+
+{% block title %}
+Informations
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row justify-content-center my-5">
+        <div class="content">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#reductions">
+                        Réductions
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#hours">
+                        Horaires
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                        aria-expanded="false">
+                        Infos
+                    </a>
+                    <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 39px, 0px);">
+                        <a class="dropdown-item" data-toggle="tab" href="#dateClosed">
+                            Jours fériés
+                        </a>
+                        <a class="dropdown-item" data-toggle="tab" href="#astuce">
+                            Astuce
+                        </a>
+                    </div>
+                </li>
+            </ul>
+            <div id="myTab" class="tab-content">
+                <div class="tab-pane fade show active" id="reductions">
+                    <div class="card-group">
+                        <div class="card">
+                            <img class=" card-img-top" src="{{ asset('img/reduce.jpg')}}" alt="reduction" id="reduce">
+                            <div class="card-body">
+                                <h5 class="card-title">Réductions !</h5>
+                                <p class="card-text">
+                                    Réductions accordées sous conditions
+                                </p>
+                                <p class="card-text">
+                                    Le tarif
+                                    <strong>réduit</strong>
+                                    d'accès au musée du Louvre est accordée, sur présentation d'un justificatif en
+                                    cours de validité, pour :
+                                </p>
+                                <ul>
+                                    <li>Les Etudiants</li>
+                                    <li>Les employés du musée</li>
+                                    <li>Les employés d'un service du Ministère de la culture</li>
+                                    <li>Le militaires</li>
+                                </ul>
+                                <p>
+                                    La liste des autres justificatifs acceptés par le musée est disponible auprès des
+                                    personnes chargés de l'accueil, situés sous la Pyramide. Tél. : +33 (0)1 40 20 53
+                                    17
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="hours">
+                    <div class="card border-primary mx-3 text-center" style="max-width: 40rem;">
+                        <div class="card-header">
+                            <h4 class="card-title">
+                                Horaires
+                                <span><i class="far fa-clock"></i></span>
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-hover table-sm">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col">Jours</th>
+                                        <th scope="col">Horaires</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Lundi</th>
+                                        <td>9h _ 18h</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Mardi</th>
+                                        <td>Fermé</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Mercredi</th>
+                                        <td>9h _ 21h45</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Jeudi</th>
+                                        <td>9h _ 18h</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Vendredi</th>
+                                        <td>9h _ 21h45</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Samedi</th>
+                                        <td>9h _ 18h</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Dimanche</th>
+                                        <td>9h _ 18h</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="card-footer text-muted">
+                            <p>
+                                L'évacuation des salles débute à 17h30 ou 21h30 les jours de nocturne
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="astuce">
+                    <div class="card-group">
+                        <div class="card">
+                            <img class=" card-img-top" src="{{ asset('img/astuce.jpeg')}}" alt="Card image cap" id="astuce">
+                            <div class="card-body">
+                                <h5 class="card-title">Astuces !</h5>
+                                <p class="card-text">
+                                    Quels sont les meilleurs horaires pour visiter ?
+                                </p>
+                                <p class="card-text">
+                                    Le matin dès l'ouverture du musée et en nocturne. A partir de janvier 2019, le
+                                    musée est ouvert gratuitement pour tous les visiteurs, le premier samedi de chaque
+                                    mois, à partir de 18h00 et jusqu'à la fermeture à 21h45.
+                                </p>
+                                <p class="card-text">
+                                    Comment entrer au musée en moins de 30 minutes ?
+                                </p>
+                                <div class="card-text">
+                                    En achetant votre billet en ligne :
+                                    <a href="{{ path('resa_new')}}">
+                                        Achetez votre billet
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="dateClosed">
+                    <div class="card">
+                        <img class="card-img-top" src="{{ asset('img/closed.png')}}" alt="Card image cap" id="closed">
+                        <div class="card-body">
+                            <h5 class="card-title">Jours fériés en {{year|date('Y')}} :</h5>
+                            <p class="card-text">
+                                Le musée du Louvre vous accueille les jours fériés suivants :
+                            </p>
+                            <p class="card-text">
+                                <ul>
+                                    {% for value in holidays %}
+                                    <li>{{ value|localizeddate('full','none',null)|capitalize}}</li>
+                                    {% endfor %}
+                                </ul>
+                            </p>
+                            <p class="card-text">
+                                Le musée du Louvre est fermé les jours fériés suivant:
+                            </p>
+                            <ul>
+                                {% for value in daysOff %}
+                                <li>{{ value|localizeddate('full','none',null)|capitalize}}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

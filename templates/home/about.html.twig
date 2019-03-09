@@ -1,0 +1,107 @@
+{% extends 'base.html.twig'%}
+
+{% block title %}
+A propos
+{% endblock %}
+
+{% block body %}
+<div class="container ">
+
+    <h1>Projet 4 </h1>
+    <h2>Billetterie du Louvre</h2>
+    <h3>Contexte du projet</h3>
+
+    <p>Le musée du Louvre vous a missionné pour un projet ambitieux : créer un nouveau système de
+        réservation et de gestion des tickets en ligne pour diminuer les longues files d’attente et tirer
+        parti de l’usage croissant des smartphones.
+    </p>
+    <hr>
+    <h3>Cahier des charges</h3>
+    <p>
+        L’interface doit être accessible aussi bien sur ordinateur de bureau que tablettes et smartphones,
+        et utiliser pour cela un design responsive. L’interface doit être fonctionnelle, claire et rapide
+        avant tout. Le client ne souhaite pas surcharger le site d’informations peu utiles : l’objectif est
+        de permettre aux visiteurs d’acheter un billet rapidement.
+    </p>
+    <p>Il existe 2 types de billets :</p>
+    <ul>
+        <li>le billet « Journée » </li>
+        <li>et le billet « Demi-journée »
+            <small>(il ne permet de rentrer qu’à partir de 14h00).</small>
+        </li>
+    </ul>
+    <p>Le musée est ouvert tous les jours sauf le mardi (et fermé les 1er mai, 1er novembre et 25 décembre).</p>
+    <p>Le musée propose plusieurs types de tarifs :</p>
+    <ul>
+        <li> Un tarif « normal » à partir de 12 ans à 16 €</li>
+        <li>Un tarif « enfant » à partir de 4 ans et jusqu’à 12 ans, à 8 € <small>(l’entrée est gratuite pour les
+                enfants de moins de 4 ans)</small></li>
+        <li>Un tarif « senior » à partir de 60 ans pour 12 €</li>
+        <li>Un tarif « réduit » de 10 € accordé dans certaines conditions <small>(étudiant, employé du musée, d’un
+                service du Ministère de la Culture, militaire…)</small></li>
+    </ul>
+    <p>Pour commander, on doit sélectionner :</p>
+    <ul>
+        <li>Le jour de la visite</li>
+        <li>Le type de billet (Journée, Demi-journée…). On peut commander un billet pour le jour même mais on
+            ne peut plus commander de billet « Journée » une fois 14h00 passées.</li>
+        <li>Le nombre de billets souhaités</li>
+    </ul>
+    <p>Le client précise qu’il n’est pas possible de réserver pour les jours passés (!), les dimanches,
+        les jours fériés et les jours où plus de 1000 billets ont été vendus en tout pour ne pas dépasser
+        la capacité du musée.
+    </p>
+    <p> Pour chaque billet, l’utilisateur doit indiquer son nom, son prénom, son pays et sa date de
+        naissance. Elle déterminera le tarif du billet.
+    </p>
+
+    <p>Si la personne dispose du tarif réduit, elle doit simplement cocher la case « Tarif réduit ». Le
+        site doit indiquer qu’il sera nécessaire de présenter sa carte d’étudiant, militaire ou équivalent
+        lors de l’entrée pour prouver qu’on bénéficie bien du tarif réduit.
+    </p>
+
+    <p>Le site récupèrera par ailleurs l’e-mail du visiteur afin de lui envoyer les billets. Il ne
+        nécessitera pas de créer un compte pour commander.
+    </p>
+
+    <p>Le visiteur doit pouvoir payer avec la solution Stripe par carte bancaire.</p>
+
+    <p>Le site doit gérer le retour du paiement. En cas d’erreur, il invite à recommencer l’opération. Si
+        tout s’est bien passé, la commande est enregistrée et les billets sont envoyés au visiteur.
+    </p>
+
+    <p>Vous utiliserez les environnements de test fournis par Stripe pour simuler la transaction, afin de
+        ne pas avoir besoin de rentrer votre propre carte bleue.
+    </p>
+    <hr>
+    <span class="badge badge_pill badge-info">
+        <i class="fas fa-info-circle fa-3x"></i>
+    </span>
+    <div class="alert  alert-info">
+        <p>La création d'un back-office pour lister les clients et commandes n'est pas demandée. Seule l'interface
+            client est nécessaire ici.
+        </p>
+    </div>
+    <hr>
+    <h3>Le billet</h3>
+    <p>Un email de confirmation sera envoyé à l’utilisateur et fera foi de billet.</p>
+    <p>Le mail doit indiquer:</p>
+    <ul>
+        <li>Le nom et le logo du musée</li>
+        <li> La date de la réservation</li>
+        <li> Le tarif</li>
+        <li> Le nom de chaque visiteur</li>
+        <li>Le code de la réservation (un ensemble de lettres & chiffres)</li>
+    </ul>
+    <hr>
+    <h2>Livrables attendus</h2>
+    <p>
+        <ul>
+            <li>Document de présentation de la solution pour le client, incluant la note de cadrage (PDF)</li>
+            <li>Code source complet du projet versionné avec Git, développé avec le framework PHP Symfony</li>
+            <li>Quelques (4-5) tests unitaires et fonctionnels que l’on peut exécuter</li>
+        </ul>
+
+    </p>
+</div>
+{% endblock %}
