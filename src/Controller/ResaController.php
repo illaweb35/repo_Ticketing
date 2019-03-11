@@ -193,11 +193,11 @@ class ResaController extends AbstractController
                 $sendResa->postMail($resa);
 
                 // Message success
-                $this->addFlash('success', 'Votre paiement a bien été validé, Vos billets pour le ' . date_format($resa->getVisitDate(), "d-M-Y") . ' ont été envoyé à l\'adresse  ' . $resa->getEmailResa() . 'sous la référence n° ' . $resa->getCodeResa() . 'merci de votre commande.');
+                $this->addFlash('success', 'Votre paiement a bien été validé, Vos billets pour le ' . date_format($resa->getVisitDate(), "d-M-Y") . ' ont été envoyé à l\'adresse mail:  ' . $resa->getEmailResa() . 'sous la référence n° (' . $resa->getCodeResa() . ') ,  merci de votre commande.');
                 $this->cancelResa();
                 return $this->redirectToRoute('home_page');
-            } catch (Card $e) {
-                $this->AddFlash('warning', 'une erreur est survenue lors de l\'envoi de l\'e-mail, veuillez contacter le musée du Louvre et indiquer votre numéro de réservation ' . $resa->getCodeResa() . ', afin que vous obteniez vos billets. Merci de votre compréhension');
+            } catch (\Exception $e) {
+                $this->AddFlash('warning', 'une erreur est survenue lors de l\'envoi de l\'e-mail, veuillez contacter le musée du Louvre et indiquer votre numéro de réservation ' . $resa->getCodeResa() . ', afin d\'obtenir vos billets. Merci de votre compréhension');
             }
         } else {
             // Message error in transaction
