@@ -5,14 +5,16 @@ namespace App\Controller;
 use App\Entity\Resa;
 use App\Entity\Ticket;
 use App\Form\ResaType;
+use App\Service\Checkout;
+use App\Service\SendEmailResa;
 use App\Service\GeneratorCodeResa;
 use App\Form\CollectionTicketsType;
+use App\Service\CalculateTicketPrice;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Service\CalculateTicketPrice;
 
 /**
  * Class ResaController
@@ -154,5 +156,55 @@ class ResaController extends AbstractController
         return $this->render('resa/verif.html.twig', [
             'resa' => $resa
         ]);
+    }
+
+    /**
+     * Save Stripe Charge and send tickets by email
+     *
+     * @Route("/resa/charge",name="resa_charge")
+     *
+     * @param Request $request
+     * @param Checkout $checkout
+     * @param SendEmailResa $sendResa
+     * @return void
+     */
+    public function charge(Request $request, Checkout $checkout, SendEmailResa $sendResa)
+    {
+        $resa = $this->verifSession();
+
+        //Recovery of the amount of the reservation
+        $amount = $resa->getAmountResa() * 100;
+        //Passing of the reservation number as description
+        $description = 'résa n°:' . $resa->getCodeResa();
+        //Sending data to checkout
+        $payment = $checkout->checkoutStripe($amount, $description);
+
+
+        // Stripe token recovery and load passage
+        if (!$payment == false) {
+            $resa->setPaymentTokenStripe($_POST['stripeToken']);
+
+            // Persist the info and save in session
+            $this->manager->persist($resa);
+            $this->manager->flush();
+
+            try {
+                // Send email
+                $sendResa->postMail($resa);
+
+                // Message success
+                $this->addFlash('success', 'Votre paiement a bien été validé, Vos billets pour le ' . date_format($resa->getVisitDate(), "d-M-Y") . ' ont été envoyé à l\'adresse  ' . $resa->getEmailResa() . 'sous la référence n° ' . $resa->getCodeResa() . 'merci de votre commande.');
+                $this->cancelResa();
+                return $this->redirectToRoute('home_page');
+            } catch (Card $e) {
+                $this->AddFlash('warning', 'une erreur est survenue lors de l\'envoi de l\'e-mail, veuillez contacter le musée du Louvre et indiquer votre numéro de réservation ' . $resa->getCodeResa() . ', afin que vous obteniez vos billets. Merci de votre compréhension');
+            }
+        } else {
+            // Message error in transaction
+            $this->addFlash('danger', "Une erreur de paiement est survenue ! Merci de renouveller votre paiement en vérifiant bien vos éléments bancaire. !");
+            return $this->redirectToRoute('resa_verif');
+        }
+
+        return $this->render('resa/success.html.twig');
     }
 }
