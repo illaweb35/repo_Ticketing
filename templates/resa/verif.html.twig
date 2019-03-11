@@ -48,7 +48,7 @@
                         <div class="card-header">
                             <img src="{{asset('img/logo_2.png')}}" id="billet" alt="Logo musée du Louvre">
                             <p>Billet pour le :
-                                <small>{{resa.dvisitDate|localizeddate('full','none',null)|capitalize}}</small>
+                                <small>{{resa.visitDate|localizeddate('full','none',null)|capitalize}}</small>
                             </p>
                         </div>
                         <div class="card-body">
@@ -72,9 +72,9 @@
                             </p>
                             <p>
                                 <span class="mt-2">Prix :</span>
-                                <strong>{{ticket.price}} &euro;</strong>
+                                <strong>{{ticket.priceTicket}} &euro;</strong>
                             </p>
-                            {% if ticket.reduce == 1 %}
+                            {% if ticket.reducePrice == 1 %}
                             <span style="color:red">Tarif reduit</span>
                             <p>
                                 <small>Justificatif demandé à l'entrée du musée</small>
