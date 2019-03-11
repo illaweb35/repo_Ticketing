@@ -22,7 +22,7 @@ class ResaRepository extends ServiceEntityRepository
     public function findTicketsByDate($value)
     {
         return $this->createQueryBuilder('r')
-            ->andWhere('r.dateVisit = :val')
+            ->andWhere('r.visitDate = :val')
             ->setParameter('val', $value)
             ->join('r.tickets', 't')
             ->select('COUNT(t.id)')

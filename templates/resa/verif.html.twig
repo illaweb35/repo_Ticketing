@@ -1,0 +1,130 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vérif_Resa{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Vérification de votre commande</h1>
+    <div class="content">
+        <h3>Votre réservation n°:
+            <span class="border m-2 px-2">
+                <strong>{{resa.codeResa}}</strong>
+            </span>
+        </h3>
+        <p>
+            Votre email de réservation:
+            <span class="mx-2">
+                <strong>{{resa.emailResa}}</strong>
+            </span>
+        </p>
+        <div class="row">
+            <div class="col">
+                <p>
+                    <u>Date de la Visite :</u>
+                    <strong> {{resa.visitDate|localizeddate('full','none',null)|capitalize}}</strong>
+                </p>
+                <p>
+                    <u>Type de Billet :</u>
+                    <span class="mx-2"> {% if resa.typeTicket == 1 %}
+                        <strong>Journée</strong>
+                        {% else %}
+                        <strong>Demi-journée</strong>
+                        {% endif %}
+                    </span>
+                    <p>
+                        <u>Nombre de billets :</u>
+                        <span class="mt-2">
+                            <strong>{{resa.nbTickets}}</strong>
+                        </span>
+                    </p>
+            </div>
+        </div>
+        {# col_1#}
+        <div class="col">
+            <div class="row justify-content-center">
+                {% for ticket in resa.tickets %}
+                <div class="col-md-4  mt-3">
+                    <div class="card" style="max-width: 18rem">
+                        <div class="card-header">
+                            <img src="{{asset('img/logo_2.png')}}" id="billet" alt="Logo musée du Louvre">
+                            <p>Billet pour le :
+                                <small>{{resa.dvisitDate|localizeddate('full','none',null)|capitalize}}</small>
+                            </p>
+                        </div>
+                        <div class="card-body">
+                            <p>
+                                <span class="mr-2">Nom de famille :</span>
+                                <strong>{{ ticket.lastName|capitalize }}</strong>
+                            </p>
+                            <p>
+                                <span class="mr-2">Prénom :</span>
+                                <strong>{{ticket.firstName|capitalize}}</strong>
+                            </p>
+                            <p>
+                                <span class="mr-2">Date de naissance :</span>
+                            </p>
+                            <p>
+                                <strong>{{ ticket.birthday|localizeddate('full','none',null)|capitalize}}</strong>
+                            </p>
+                            <p>
+                                <span class="mr-2">Pays :</span>
+                                <strong>{{ticket.country|capitalize}}</strong>
+                            </p>
+                            <p>
+                                <span class="mt-2">Prix :</span>
+                                <strong>{{ticket.price}} &euro;</strong>
+                            </p>
+                            {% if ticket.reduce == 1 %}
+                            <span style="color:red">Tarif reduit</span>
+                            <p>
+                                <small>Justificatif demandé à l'entrée du musée</small>
+                            </p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <hr>
+        <div class="row justify-content-center">
+            <h4>Total de la réservation</h4>
+            <h5>
+                <span class="mx-3">
+                    <strong>{{resa.amountResa}} &euro;</strong>
+                </span>
+            </h5>
+            <div class="form-group">
+                <A href="javascript:history.back()">
+                    <span class="mx-2">Modifier les informations</span>
+                </A>
+            </div>
+        </div>
+        <hr>
+        {# Debut du card de paiement#}
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="card">
+                    <div class="card-header">
+                        Vous allez être redirigé vers la formulaire de paiement.
+                    </div>
+                    <div class="card-body ">
+                        {# Start Stripe Form #}
+                        <form action='charge' method="POST"> 
+                            {# Start of Stripe's javascript for Checkout #}
+                            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_test_FSdMC4Gb7uNaVNWYCrTULKwB"
+                                data-amount="{{resa.amountResa *100}}" data-name="{{resa.emailResa}}" data-description="Réservation N°: {{resa.codeResa}}"
+                                data-image="{{asset('img/logo.png')}}" data-locale="auto" data-currency="eur"
+                                data-zip-code="true">
+                            </script>
+                            {# End Stripe Form #}
+                        </form>
+                        {# End Form #}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

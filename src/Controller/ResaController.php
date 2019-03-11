@@ -78,7 +78,7 @@ class ResaController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $code = new GeneratorCodeResa();
-            $resa->setResaCode($code->generatorCode());
+            $resa->setCodeResa($code->generatorCode());
 
             // Persist the info and save in session
             $this->manager->persist($resa);
@@ -122,7 +122,7 @@ class ResaController extends AbstractController
 
             // For each ticket generated, calculate the ticket price according to the age entered
             foreach ($tickets as $ticket) {
-                $ticketPrice = $ticketPrices->calculatePrice($ticket->getReduceTicket(), $ticket->getBirthday());
+                $ticketPrice = $ticketPrices->calculatePrice($ticket->getReducePrice(), $ticket->getBirthday());
                 $ticket->setPriceTicket($ticketPrice);
                 $totalPrice += $ticketPrice;
                 $this->manager->persist($ticket);
@@ -138,6 +138,21 @@ class ResaController extends AbstractController
         }
         return $this->render('resa/newTicket.html.twig', [
             'form' => $form->createView()
+        ]);
+    }
+    /**
+     * Summary of the order and sent to checkout
+     *
+     * @Route("/resa/verif",name="resa_verif")
+     *
+     * @return Response
+     */
+    public function resaVerif(Request $request)
+    {
+        $resa = $this->verifSession();
+
+        return $this->render('resa/verif.html.twig', [
+            'resa' => $resa
         ]);
     }
 }

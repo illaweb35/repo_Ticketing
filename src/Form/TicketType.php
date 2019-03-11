@@ -9,6 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class TicketType extends AbstractType
 {
@@ -22,7 +23,7 @@ class TicketType extends AbstractType
                 'label'              => 'Pays',
                 'preferred_choices'  => ['FR']
             ])
-            ->add('reducePrice', CheckBoxType::class, [
+            ->add('reducePrice', CheckboxType::class, [
                 'label'     => 'Tarif reduit *',
                 'required'  => false
             ]);
