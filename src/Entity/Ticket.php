@@ -70,7 +70,7 @@ class Ticket
     private $createdAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Resa", inversedBy="tickets")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Resa", inversedBy="tickets",cascade={"persist"})
      */
     private $resa;
 

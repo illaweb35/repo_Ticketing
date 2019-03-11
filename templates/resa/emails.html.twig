@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Liste des billets commandés.{% endblock %}
+{# deleting the menu #}
+{% block menu %}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Email de confirmation de paiement</h1>
+    <h2>Validation de votre commande</h2>
+    <div class="content">
+        <h3>Votre réservation n°:
+            <span class="border m-2 px-2">
+                <strong>{{resa.codeResa}}</strong>
+            </span>
+        </h3>
+        <p>
+            Votre email de réservation:
+            <span class="mx-2">
+                <strong>{{resa.emailResa}}</strong>
+            </span>
+        </p>
+        <div class="row">
+            <div class="col">
+                <p>
+                    <u>Date de la Visite :</u>
+                    <strong> {{resa.visitDate|localizeddate('full','none',null)|capitalize}}</strong>
+                </p>
+                <p>
+                    <u>Type de Billet :</u>
+                    <span class="mx-2"> {% if resa.typeTicket == 1 %}
+                        <strong>Journée</strong>
+                        {% else %}
+                        <strong>Demi-journée</strong>
+                        {% endif %}
+                    </span>
+                </p>
+                <p>
+                    <u>Nombre de billets :</u>
+                    <span class="mt-2">
+                        <strong>{{resa.nbTickets}}</strong>
+                    </span>
+                </p>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            {% for ticket in resa.tickets %}
+            <div class="col-md-4 mt-3">
+                <div class="card">
+                    <div class="card-header">
+                        <img src="{{absolute_url(asset('img/logo_2.png'))}}" id="billet" alt="Musée du Louvre">
+                        <p>
+                            Billet pour le :
+                            <small>{{resa.visitDate|localizeddate('full','none',null)}}</small>
+                        </p>
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            <span class="mr-2">Nom de famille</span>
+                            <strong>{{ ticket.lastName|capitalize}} </strong>
+                        </p>
+                        <p>
+                            <span class="mr-2">Prénom</span>
+                            <strong>{{ticket.firstName|capitalize}}</strong>
+                        </p>
+                        <p>
+                            <span class="mr-2">Date de naissance</span>
+                        </p>
+                        <p>
+                            <strong>{{ ticket.birthday|localizeddate('full','none',null)|capitalize}}</strong>
+                        </p>
+                        <p>
+                            <span class="mr-2">Pays</span>
+                            <strong>{{ticket.country|capitalize}}</strong>
+                        </p>
+                        <p>
+                            <span class="mt-2">Tarif</span>
+                            <strong>{{ticket.priceTicket}} &euro;</strong>
+                        </p>
+                        {% if ticket.reducePrice == 1 %}
+                        <span style="color:red">Tarif reduit</span>
+                        <p>
+                            <small>Justificatif demandé à l'entrée du musée</small>
+                        </p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <hr>
+    <h4>Total de la réservation</h4>
+    <h5>
+        <span class="mx-3">
+            <strong>{{resa.amountResa}} &euro;</strong>
+        </span>
+    </h5>
+</div>
+{% endblock %}
+{# deleting the footer #}
+{% block footer %}{% endblock %}

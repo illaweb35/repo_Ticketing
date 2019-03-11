@@ -94,7 +94,7 @@ class Resa
     private $createdAt;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Ticket", mappedBy="resa")
+     * @ORM\OneToMany(targetEntity="App\Entity\Ticket", mappedBy="resa",cascade={"persist"})
      */
     private $tickets;
 
