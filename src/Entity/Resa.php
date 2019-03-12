@@ -102,6 +102,7 @@ class Resa
     {
         $this->tickets = new ArrayCollection();
     }
+
     /**
      * Callback called every time we create a reservation
      * @ORM\PrePersist
