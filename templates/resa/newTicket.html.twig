@@ -11,30 +11,36 @@
 {% form_theme form 'resa/custom_form/_collection.html.twig' %}
 
 {% block body %}
-<div class="container mt-5" id="form_center">
-    <div class="content">
-        <h1 class="title">Billet commandé</h1>
-        <h2 class="subtitle">Saisi des informations de billet</h2>
-        <hr>
-        <div class="row">
-            {# Start form #}
-            {{ form_start(form) }}
-            <form action="">
-                {% for ticket in form.tickets %}
-                {{ form_widget(ticket)}}
-                {% endfor %}
-                <div class="form-group">
-                    <button type="submit" class="btn btn-outline-primary">Enregistrer les billets</button>
-                    <a href="{{ path('cancel_session') }}" class="btn btn-outline-default">Annuler</a>
+<div class="container">
+    <h1 class="title text-center">Billet commandé</h1>
+    <h2 class="subtitle text-center">Saisi des informations de billet</h2>
+    <hr>
+    {# Start form #}
+    {{ form_start(form) }}
+    <form action="">
+        <div class="row justify-content-center">
+            {% for ticket in form.tickets %}
+            <div class="row">
+                <div class="col-md-auto">
+                    {{ form_widget(ticket)}}
                 </div>
-                {{ form_end(form)}}
-            </form>
-            {# End form #}
+            </div>
+            {% endfor %}
         </div>
-        {% endblock %}
+        <hr>
+        <div class="form-group text-center">
+            <button type="submit" class="btn btn-outline-primary">Enregistrer les billets</button>
+            <a href="{{ path('cancel_session') }}" class="btn btn-outline-default">Annuler</a>
+        </div>
+</div>
+{{ form_end(form)}}
+</form>
+{# End form #}
+</div>
+{% endblock %}
 
-        {% block javascripts %}
-        {{ parent() }}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
-        <script src="{{ asset('js/datepicker_ticket.js')}}"></script>
-        {% endblock %}
+{% block javascripts %}
+{{ parent() }}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+<script src="{{ asset('js/datepicker_ticket.js')}}"></script>
+{% endblock %}

@@ -20,8 +20,9 @@ class HomeController extends AbstractController
      * @Route("/", name="home_page")
      * @return void
      */
-    public function index()
+    public function index(ResaController $resa)
     {
+        $resa->cancelResa();
         return $this->render('home/index.html.twig');
     }
 
