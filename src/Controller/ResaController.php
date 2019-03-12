@@ -139,7 +139,8 @@ class ResaController extends AbstractController
             return $this->redirectToRoute('resa_verif');
         }
         return $this->render('resa/newTicket.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'resa' => $resa
         ]);
     }
     /**

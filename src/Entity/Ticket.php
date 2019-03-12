@@ -45,6 +45,9 @@ class Ticket
      * @ORM\Column(type="datetime")
      * @Assert\NotBlank(message = "Merci de saisir votre date de naissance !")
      * @Assert\Date
+     * @Assert\Range(
+     *      min = "-100 years",
+     *      max = "today")
      */
     private $birthday;
 

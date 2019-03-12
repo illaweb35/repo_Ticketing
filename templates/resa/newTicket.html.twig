@@ -12,7 +12,14 @@
 
 {% block body %}
 <div class="container">
-    <h1 class="title text-center">Billet commandé</h1>
+
+    <h1 class="title text-center">
+        {% if resa.nbTickets == 1 %}
+        Billet commandé
+        {% else %}
+        Billets commandés
+        {% endif %}
+    </h1>
     <h2 class="subtitle text-center">Saisi des informations de billet</h2>
     <hr>
     {# Start form #}

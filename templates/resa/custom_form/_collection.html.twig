@@ -2,18 +2,20 @@
 <div class="card mx-2">
     <div class="card-body">
         <div class="form-row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-auto">
                 {{ form_label(form.lastName) }}
                 {{ form_widget(form.lastName) }}
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-auto">
                 {{ form_label(form.firstName) }}
                 {{ form_widget(form.firstName) }}
             </div>
         </div>
         <hr>
         <div class="form-group">
-            {{ form_label(form.birthday) }}
+            <label for="birthday" class="label">
+                Date de naissance
+            </label>
             {{ form_widget(form.birthday) }}
         </div>
         <hr>
