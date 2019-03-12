@@ -78,6 +78,11 @@ class Ticket
     private $resa;
 
     /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $ageClient;
+
+    /**
      * Callback called every time we create a reservation
      * @ORM\PrePersist
      * @return void
@@ -186,6 +191,18 @@ class Ticket
     public function setResa(? Resa $resa): self
     {
         $this->resa = $resa;
+
+        return $this;
+    }
+
+    public function getAgeClient(): ?int
+    {
+        return $this->ageClient;
+    }
+
+    public function setAgeClient(?int $ageClient): self
+    {
+        $this->ageClient = $ageClient;
 
         return $this;
     }

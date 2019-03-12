@@ -6,6 +6,7 @@ use App\Entity\Resa;
 use App\Entity\Ticket;
 use App\Form\ResaType;
 use App\Service\Checkout;
+use App\Service\AgeCalculator;
 use App\Service\SendEmailResa;
 use App\Service\GeneratorCodeResa;
 use App\Form\CollectionTicketsType;
@@ -100,7 +101,7 @@ class ResaController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function newTicket(CalculateTicketPrice $ticketPrices, Request $request)
+    public function newTicket(AgeCalculator $calculateAge, CalculateTicketPrice $ticketPrices, Request $request)
     {
         $resa = $this->verifSession();
 
@@ -124,6 +125,8 @@ class ResaController extends AbstractController
 
             // For each ticket generated, calculate the ticket price according to the age entered
             foreach ($tickets as $ticket) {
+                $age = $calculateAge->ageOlder($ticket->getBirthday());
+                $ticket->setAgeClient($age);
                 $ticketPrice = $ticketPrices->calculatePrice($ticket->getReducePrice(), $ticket->getBirthday());
                 $ticket->setPriceTicket($ticketPrice);
                 $totalPrice += $ticketPrice;
@@ -141,6 +144,7 @@ class ResaController extends AbstractController
         return $this->render('resa/newTicket.html.twig', [
             'form' => $form->createView(),
             'resa' => $resa
+
         ]);
     }
     /**
@@ -155,7 +159,7 @@ class ResaController extends AbstractController
         $resa = $this->verifSession();
 
         return $this->render('resa/verif.html.twig', [
-            'resa' => $resa
+            'resa' => $resa,
         ]);
     }
 
