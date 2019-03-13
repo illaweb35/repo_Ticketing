@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="jumbotron">
+    <h1 class="display-4">HOOuulah !!!! il y a une erreur n'est ce pas!!!</h1>
+    <p class="lead">Nous sommes désolé de la gène occasionnée, une erreur inattendue s'est produite.</p>
+    <hr class="my-4">
+    <p>Nous vous invitons à revenir sur la page d'acceuil, en cliquant sur le lien ci-dessous.</p>
+    <a class="btn btn-primary btn-lg" href="{{path('home_page')}}" role="button">Accueil</a>
+</div>
+{% endblock %}
