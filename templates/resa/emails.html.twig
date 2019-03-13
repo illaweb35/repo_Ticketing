@@ -64,7 +64,11 @@
                             <strong>{{ticket.firstName|capitalize}}</strong>
                         </p>
                         <p>
-                            <span class="mr-2">Date de naissance</span>
+                            Age :
+                            <strong>{{ticket.ageClient}}</strong>
+
+                            {% if ticket.ageClient <= 1 %} an {% else %} ans {% endif %} </p> <p>
+                                <span class="mr-2">Date de naissance</span>
                         </p>
                         <p>
                             <strong>{{ ticket.birthday|localizeddate('full','none',null)|capitalize}}</strong>
