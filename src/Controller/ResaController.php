@@ -125,17 +125,20 @@ class ResaController extends AbstractController
 
             // For each ticket generated, calculate the ticket price according to the age entered
             foreach ($tickets as $ticket) {
+                //Records the age of the customer following the date of birth
                 $age = $calculateAge->ageOlder($ticket->getBirthday());
                 $ticket->setAgeClient($age);
+                //Caculating price of ticket following the age.
                 $ticketPrice = $ticketPrices->calculatePrice($ticket->getReducePrice(), $ticket->getBirthday());
                 $ticket->setPriceTicket($ticketPrice);
+                //Caculating total price for resa
                 $totalPrice += $ticketPrice;
                 $this->manager->persist($ticket);
             }
-            // save the amount of the reservation
+            // Records the amount of the reservation
             $resa->setAmountResa($totalPrice);
 
-            //  Persist the info and save in session
+            // Persist the info and save in session
             $this->manager->persist($resa);
             $this->session->set('resa', $resa);
 
