@@ -23,7 +23,7 @@ class AgeCalculatorTest extends TestCase
     public function dataAge()
     {
         return [
-            [new \datetime('1990-03-03'), 29],
+            [new \datetime('1989-03-03'), 30],
             [new \Datetime('2010-01-25'), 9],
             [new \Datetime('1954-12-25'), 64],
             [new \Datetime('1995-07-12'), 23],

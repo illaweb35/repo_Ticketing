@@ -40,7 +40,7 @@ class CalculateTicketPrice
             } else {
                 return self::REDUCE;
             }
-        } catch (\Stripe\Error\Card $e) {
+        } catch (\Exception $e) {
             $this->addFlash('danger', "Error in price calculation");
             return $this->redirecToroute('resa_new');
         }
