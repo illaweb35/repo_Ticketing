@@ -9,12 +9,12 @@ class HomeControllerTest extends WebTestCase
     public function testIndex()
     {
         $client = self::createClient();
-        $client->request('GET', ('/'));
-        $this->assertTrue($client->getResponse()->isSuccessful());
+        $client->request('GET', ("/"));
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
+
     /**
-     *
      *
      * @param CalculateHolidays $holidays
      * @return void
@@ -35,7 +35,7 @@ class HomeControllerTest extends WebTestCase
             [date('D d M Y', '2019-05-01')],
             [date('D d M Y', '2019-11-01')],
             [date('D d M Y', '2019-11-11')],
-            [date('D d M Y', '2019-12-25')],
+            [date('D d M Y', '2019-12-25')]
         ];
     }
 }
