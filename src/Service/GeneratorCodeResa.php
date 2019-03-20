@@ -11,7 +11,7 @@ class GeneratorCodeResa
     public function generatorCode(): string
     {
         $length = 10;
-        $letters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
         $days = new \DateTime();
         $today = $days->format('dmYHis');
         $chaine = $letters . $today;

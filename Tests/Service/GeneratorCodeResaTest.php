@@ -1,22 +1,18 @@
 <?php
 namespace App\Tests\Service;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+
+use PHPUnit\Framework\TestCase;
 use App\Service\GeneratorCodeResa;
 
-class GeneratorCodeResaTest extends WebTestCase
+
+class GeneratorCodeResaTest extends TestCase
 {
-    /**
-     * @test
-     *
-     * @return void
-     */
-    public function GeneratorCode()
+
+    public function testGeneratorCode()
     {
         $generatorCodeResa = new GeneratorCodeResa();
 
         $result = $generatorCodeResa->generatorCode();
-
-        $this->assertSame('e2i3uOzdff8', $result);
     }
 }

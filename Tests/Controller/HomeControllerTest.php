@@ -7,23 +7,15 @@ use App\Service\CalculateHolidays;
 class HomeControllerTest extends WebTestCase
 {
 
-    /**
-    * @test
-    *
-    * @param url $url
-    * @dataProvider urlProvider
-    */
-    public function index($url)
+
+    public function testIndex()
     {
         $client = self::createClient();
-        $client->request('GET', $url);
+        $client->request('GET', ('/'));
         $this->assertTrue($client->getResponse()->isSuccessful());
     }
 
-    public function urlProvider()
-    {
-        yield ['/'];
-    }
+
 
     /**
      * @test
@@ -38,19 +30,19 @@ class HomeControllerTest extends WebTestCase
 
         $year = new \Datetime();
         $daysOff = $holiday->dayOff($year);
-        $holidays = $holiday->getHolidays($year);
 
-        $this->assertSame($testHolidays, $daysOff);
+        dump($testHolidays, $daysOff);
+        $this->assertEquals($testHolidays, $daysOff);
     }
     public function dataHolidays()
     {
-        $year = new \Datetime();
-        return array(
-            [mktime(0, 0, 0, 1, 1, $year)],
-            [mktime(0, 0, 0, 5, 1, $year)],
-            [mktime(0, 0, 0, 07, 14, $year)],
-            [mktime(0, 0, 0, 11, 1, $year)],
-            [mktime(0, 0, 0, 12, 25, $year)]
-        );
+
+        return [
+            [date('D d M Y', '2019/01/01')],
+            [date('D d M Y', '2019/05/01')],
+            [date('D d M Y', '2019/11/01')],
+            [date('D d M Y', '2019/11/11')],
+            [date('D d M Y', '2019/12/25')],
+        ];
     }
 }
