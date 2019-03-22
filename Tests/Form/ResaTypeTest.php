@@ -12,9 +12,10 @@ class ResaTypeTest extends TypeTestCase
     public function testSubmitValidData()
     {
         $formData = [
+            'visitDate' => "2019-02-25",
             'emailResa' => 'admin@test.de',
-            'typeTicket' => 'Journée',
-            'nbTickets' => '2'
+            'typeTicket' => true,
+            'nbTickets' => 2
         ];
 
         $objectToCompare = new Resa();
@@ -22,7 +23,11 @@ class ResaTypeTest extends TypeTestCase
         $form = $this->factory->create(ResaType::class, $objectToCompare);
 
         $object = new Resa();
-        // ...populate $object properties with the data stored in $formData
+        $date = new \DateTime('2019-02-25');
+        $object->setVisitDate($date)
+            ->setEmailResa('admin@test.de')
+            ->setTypeTicket(true)
+            ->setNbTickets(2);
 
         // submit the data to the form directly
         $form->submit($formData);

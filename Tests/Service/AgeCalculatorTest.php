@@ -11,23 +11,25 @@ class AgeCalculatorTest extends TestCase
      * Undocumented function
      *
      * @param \DateTime $birthday
-     * @param int $data
-     * @dataProvider dataAge
+     *
+     * @dataProvider birthday
      */
-    public function testAgeOlder(\DateTime $birthday, $data)
+    public function testAgeOlder(\DateTime $birthday)
     {
-
+        $today = new \DateTime();
+        $data = $today->diff($birthday, true)->y;
         $age = new AgeCalculator();
         $this->assertEquals($data, $age->ageOlder($birthday));
     }
-    public function dataAge()
+
+    public function birthday()
     {
         return [
-            [new \datetime('1989-03-03'), 30],
-            [new \Datetime('2010-01-25'), 9],
-            [new \Datetime('1954-12-25'), 64],
-            [new \Datetime('1995-07-12'), 23],
-            [new \Datetime('2014-02-14'), 5]
+            [new \datetime('1989-03-03')],
+            [new \Datetime('2010-01-25')],
+            [new \Datetime('1954-12-25')],
+            [new \Datetime('1995-07-12')],
+            [new \Datetime('2014-02-14')]
         ];
     }
 }

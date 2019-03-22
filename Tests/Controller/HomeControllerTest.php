@@ -26,16 +26,16 @@ class HomeControllerTest extends WebTestCase
 
         $year = new \Datetime();
         $daysOff = $holiday->dayOff($year);
-        $this->assertEquals($testHolidays, $daysOff);
+        $this->assertContains($testHolidays, $daysOff);
     }
     public function dataHolidays()
     {
         return [
-            [date('D d M Y', '2019-01-01')],
-            [date('D d M Y', '2019-05-01')],
-            [date('D d M Y', '2019-11-01')],
-            [date('D d M Y', '2019-11-11')],
-            [date('D d M Y', '2019-12-25')]
+            [date('D d M Y', strtotime('2019-01-01'))],
+            [date('D d M Y', strtotime('2019-05-01'))],
+            [date('D d M Y', strtotime('2019-07-14'))],
+            [date('D d M Y', strtotime('2019-11-01'))],
+            [date('D d M Y', strtotime('2019-12-25'))]
         ];
     }
 }
