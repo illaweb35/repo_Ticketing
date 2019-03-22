@@ -45,21 +45,3 @@ Le site doit gérer le retour du paiement. En cas d’erreur, il invite à recom
 Vous utiliserez les environnements de test fournis par Stripe pour simuler la transaction, afin de ne pas avoir besoin de rentrer votre propre carte bleue.
 
 >La création d'un back-office pour lister les clients et commandes n'est pas demandée. Seule l'interface client est nécessaire ici.
-
-### Le billet
-
-Un email de confirmation sera envoyé à l’utilisateur et fera foi de billet.
-
-Le mail doit indiquer:
-
-* Le nom et le logo du musée
-* La date de la réservation
-* Le tarif
-* Le nom de chaque visiteur
-* Le code de la réservation *(un ensemble de lettres & chiffres)*
-
-### Livrables attendus
-
-* Document de présentation de la solution pour le client, incluant la note de cadrage (PDF)
-* Code source complet du projet versionné avec Git, développé avec le framework PHP Symfony
-* Quelques (4-5) tests unitaires et fonctionnels que l’on peut exécuter
