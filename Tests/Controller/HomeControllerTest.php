@@ -16,8 +16,6 @@ class HomeControllerTest extends WebTestCase
 
     /**
      *
-     * @param CalculateHolidays $holidays
-     * @return void
      * @dataProvider dataHolidays
      */
     public function testDateOFHolidays($testHolidays)
