@@ -4,7 +4,8 @@
 
 {% block stylesheets %}
 {{ parent() }}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css">
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css">
 {% endblock %}
 
 {% block body %}
@@ -79,7 +80,8 @@
                     <hr>
                     <div class="form-group">
                         <button type="submit" class="btn btn-outline-primary">
-                            Saisir les informations de billet
+                            <i class="fas fa-pen"></i>
+                            | Saisir les informations de billet
                         </button>
                         <a href="{{ path('cancel_session') }}" class="btn btn-outline-default">Annuler</a>
                     </div>
