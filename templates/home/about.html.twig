@@ -5,103 +5,194 @@ A propos
 {% endblock %}
 
 {% block body %}
-<div class="container ">
+<section>
+    <div class="container">
+        <div class="container mt-5">
+            <h1>Projet 4 </h1>
+            <h2>Billetterie du Louvre</h2>
+            <h3>Contexte du projet</h3>
 
-    <h1>Projet 4 </h1>
-    <h2>Billetterie du Louvre</h2>
-    <h3>Contexte du projet</h3>
+            <p>Le musée du Louvre vous a missionné pour un projet ambitieux : créer un nouveau système de
+                réservation et de gestion des tickets en ligne pour diminuer les longues files d’attente et tirer
+                parti de l’usage croissant des smartphones.
+            </p>
+            <hr>
+        </div>
+        <div class="container mt-2">
+            <h3>Mise en production</h3>
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <h5>Utilisation de frameworks</h5>
+                    <ul>
+                        <li>Symfony 4.2</li>
+                        <li>Bootstrap</li>
 
-    <p>Le musée du Louvre vous a missionné pour un projet ambitieux : créer un nouveau système de
-        réservation et de gestion des tickets en ligne pour diminuer les longues files d’attente et tirer
-        parti de l’usage croissant des smartphones.
-    </p>
-    <hr>
-    <h3>Cahier des charges</h3>
-    <p>
-        L’interface doit être accessible aussi bien sur ordinateur de bureau que tablettes et smartphones,
-        et utiliser pour cela un design responsive. L’interface doit être fonctionnelle, claire et rapide
-        avant tout. Le client ne souhaite pas surcharger le site d’informations peu utiles : l’objectif est
-        de permettre aux visiteurs d’acheter un billet rapidement.
-    </p>
-    <p>Il existe 2 types de billets :</p>
-    <ul>
-        <li>le billet « Journée » </li>
-        <li>et le billet « Demi-journée »
-            <small>(il ne permet de rentrer qu’à partir de 14h00).</small>
-        </li>
-    </ul>
-    <p>Le musée est ouvert tous les jours sauf le mardi (et fermé les 1er mai, 1er novembre et 25 décembre).</p>
-    <p>Le musée propose plusieurs types de tarifs :</p>
-    <ul>
-        <li> Un tarif « normal » à partir de 12 ans à 16 €</li>
-        <li>Un tarif « enfant » à partir de 4 ans et jusqu’à 12 ans, à 8 € <small>(l’entrée est gratuite pour les
-                enfants de moins de 4 ans)</small></li>
-        <li>Un tarif « senior » à partir de 60 ans pour 12 €</li>
-        <li>Un tarif « réduit » de 10 € accordé dans certaines conditions <small>(étudiant, employé du musée, d’un
-                service du Ministère de la Culture, militaire…)</small></li>
-    </ul>
-    <p>Pour commander, on doit sélectionner :</p>
-    <ul>
-        <li>Le jour de la visite</li>
-        <li>Le type de billet (Journée, Demi-journée…). On peut commander un billet pour le jour même mais on
-            ne peut plus commander de billet « Journée » une fois 14h00 passées.</li>
-        <li>Le nombre de billets souhaités</li>
-    </ul>
-    <p>Le client précise qu’il n’est pas possible de réserver pour les jours passés (!), les dimanches,
-        les jours fériés et les jours où plus de 1000 billets ont été vendus en tout pour ne pas dépasser
-        la capacité du musée.
-    </p>
-    <p> Pour chaque billet, l’utilisateur doit indiquer son nom, son prénom, son pays et sa date de
-        naissance. Elle déterminera le tarif du billet.
-    </p>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Utilisation d'API</h5>
+                    <ul>
+                        <li>Stripe</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Utilisation des langages</h5>
+                    <ul>
+                        <li>PHP</li>
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>jQuery</li>
+                        <li>Twig</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="container mt-2">
+            <h3>Architecture du site</h3>
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">1 _ Page d'accueil</div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                <ul>
+                                    <li> <a href="">Infos</a></li>
+                                    <li><a href="">Commander vos billets</a></li>
+                                </ul>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mt-2">
+                        <div class="card-header">2 _ Réservation de vos billets</div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                <ul>
+                                    <li>Date de visite </li>
+                                    <li>email de réservation</li>
+                                    <li>nombre de billet</li>
+                                    <li>Type de billet</li>
+                                    <li><a href="">Saisir les informations de billet</a></li>
+                                </ul>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mt-2">
+                        <div class="card-header">3 _ Saisi des informations</div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                <ul>
+                                    <li>Nom de famille</li>
+                                    <li>Prénom</li>
+                                    <li>Date de naissance</li>
+                                    <li>Pays de résidence</li>
+                                    <li>Tarif réduit</li>
+                                    <li><a href="">Enregistrer les billets</a></li>
+                                </ul>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mt-2">
+                        <div class="card-header">4 _ Vérification de la commande</div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                Affichage du récapitulatif de la commande
+                                <ul>
+                                    <li><a href="">Modifier les informations de réservation</a></li>
+                                    <li><a href="">Pay with card</a></li>
+                                </ul>
 
-    <p>Si la personne dispose du tarif réduit, elle doit simplement cocher la case « Tarif réduit ». Le
-        site doit indiquer qu’il sera nécessaire de présenter sa carte d’étudiant, militaire ou équivalent
-        lors de l’entrée pour prouver qu’on bénéficie bien du tarif réduit.
-    </p>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mt-2">
+                        <div class="card-header">5 _ Paiement Carte Bleu avec Stripe</div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                <ul>
+                                    <li>email de réservation</li>
+                                    <li>N° de carte Bleu</li>
+                                    <li>Date d'expiration</li>
+                                    <li>CVC</li>
+                                    <li>Code postal</li>
+                                    <li><a href="">Payer 00,0 € </a></li>
+                                </ul>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <hr>
+            <h3>Récupérer le projet</h3>
 
-    <p>Le site récupèrera par ailleurs l’e-mail du visiteur afin de lui envoyer les billets. Il ne
-        nécessitera pas de créer un compte pour commander.
-    </p>
+            <p>Pour cloner le projet <a href="https://github.com/illaweb35/repo_Ticketing.git">repo GitHub</a></p>
 
-    <p>Le visiteur doit pouvoir payer avec la solution Stripe par carte bancaire.</p>
+            <p> Vous avez la choix entre télécharger le zip ou cloner le repo.</p>
+            <p>
+                Une fois le repository chargé sur votre ordinateur, ouvrez votre dossier avec votre éditeur de code
+                favori,
+                et
+                ouvrez un terminal dans le dossier du repo.
+            </p>
+            <p>Puis entrer les intructions suivantes:
+                <ol>
+                    <li>
+                        <pre>composer install</pre>
+                    </li>
+                    <p>pour charger les composants nécessaires au fonctionnement de symfony</p>
+                    <li>
+                        <pre>composer update</pre>
+                    </li>
+                    <p>pour faire une mise a jour des composants</p>
+                </ol>
+            </p>
+        </div>
 
-    <p>Le site doit gérer le retour du paiement. En cas d’erreur, il invite à recommencer l’opération. Si
-        tout s’est bien passé, la commande est enregistrée et les billets sont envoyés au visiteur.
-    </p>
+        <hr>
 
-    <p>Vous utiliserez les environnements de test fournis par Stripe pour simuler la transaction, afin de
-        ne pas avoir besoin de rentrer votre propre carte bleue.
-    </p>
-    <hr>
-    <span class="badge badge_pill badge-info">
-        <i class="fas fa-info-circle fa-3x"></i>
-    </span>
-    <div class="alert  alert-info">
-        <p>La création d'un back-office pour lister les clients et commandes n'est pas demandée. Seule l'interface
-            client est nécessaire ici.
-        </p>
+        <div class="container">
+            <h5>Paramètres de l'application</h5>
+            <div class="row mt-3">
+                <div class="col-md-4">
+                    <h6>Base de données</h6>
+                    <p>La base de données utilisée pour le projet est de type SQlite et se trouve dans le dossier
+                        "Var
+                        ->
+                        data.db".
+                    </p>
+                    <p>Les intructions de connexion sont dans le dossier ".env" à la ligne :</p>
+                    <pre><small>DATABASE_URL=sqlite:///%kernel.project_dir%/var/data.db</small></pre>
+                </div>
+                <div class="col-md-4">
+                    <h6>Modification base de données</h6>
+                    <p>Si vous souhaitez utiliser une base de données MySql veuillez changer les informations de
+                        connexion
+                        de la
+                        base de donnée dans le fichier ".env"</p>
+                    <pre><small>DATABASE_URL="mysql://db_user:db_password@127.0.0.1:3306/db_name"</small></pre>
+                    <hr>
+                </div>
+                <div class="col-md-4">
+                    <h6>Email</h6>
+                    <p>Instruction pour l'envoi d'email avec switfmailer modifier la ligne suivante dans le fichier
+                        ".env"
+                    </p>
+                    <pre><small>MAILER_URL=smtp://localhost:25?encryption=&auth_mode=</small></pre>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h4>Maintenant à vous de jouer !!</h4>
     </div>
-    <hr>
-    <h3>Le billet</h3>
-    <p>Un email de confirmation sera envoyé à l’utilisateur et fera foi de billet.</p>
-    <p>Le mail doit indiquer:</p>
-    <ul>
-        <li>Le nom et le logo du musée</li>
-        <li> La date de la réservation</li>
-        <li> Le tarif</li>
-        <li> Le nom de chaque visiteur</li>
-        <li>Le code de la réservation (un ensemble de lettres & chiffres)</li>
-    </ul>
-    <hr>
-    <h2>Livrables attendus</h2>
-    <p>
-        <ul>
-            <li>Document de présentation de la solution pour le client, incluant la note de cadrage (PDF)</li>
-            <li>Code source complet du projet versionné avec Git, développé avec le framework PHP Symfony</li>
-            <li>Quelques (4-5) tests unitaires et fonctionnels que l’on peut exécuter</li>
-        </ul>
-
-    </p>
-</div>
+</section>
 {% endblock %}
