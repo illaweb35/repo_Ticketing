@@ -1,11 +1,73 @@
-# Billetterie du Louvre
+# Louvre ticket office
 
-## Projet 4 Billetterie du musée du Louvre
+## Project 4 Ticket Shop at the Louvre Museum
 
-Symfony standart Edition 4.2
 
-[Symfony 4.2](https://symfony.com/download)
 
-### Contexte du projet
+### Context of the project
 
-Le musée du Louvre vous a missionné pour un projet ambitieux : créer un nouveau système de réservation et de gestion des tickets en ligne pour diminuer les longues files d’attente et tirer parti de l’usage croissant des smartphones.
+The Louvre Museum has commissioned you for an ambitious project: to create a new system for booking and managing tickets online to reduce long queues and take advantage of the growing use of smartphones.
+
+
+#### Production
+
+
+- MVC
+- Symfony
+- Bootstrap
+- Sqlite
+- Html/ Twig
+- CSS
+- jQuery
+- SwifMailer
+- Stripe
+
+#### Site Architecture
+
+- Home
+    - Booking of tickets
+        - Date choice
+        - email order
+        - number ticket
+        - reduce choice
+    - Enter ticket information
+        - lastName
+        - firstName
+        - birthday
+        - country
+    - Checking order
+        - show the summary of the order
+    - Pay with card
+        - email order
+        - number card
+        - date valid
+        - CVC
+        - zip Code
+
+
+#### How use the project
+
+To clone the project go to [repo_Github] (https://github.com/illaweb35/repo_Ticketing.git)
+
+You have the choice between downloading the zip, or cloning the deposit.
+
+Once you have searched for the repository, open the folder with your code editor and launch a terminal in the folder, then enter the following statements:
+
+```
+   : $ composer install
+   : $ composer update
+```
+The database used by default is Sqlite.
+
+If you want to use another database please refer to the symfony documentation.
+
+The configuration parameters are in the .env file
+
+- Dev Environment or Prod
+- Database connection information
+- email information
+
+
+
+
+Et Voilà !! your project is functionnal
