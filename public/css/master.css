@@ -2,14 +2,18 @@
 Change brings to the css spacelab
 **/
 .navbar #logo {
-    height: 100%;
-    max-width: 150px;
+    width: 65%;
     padding: 0 1em 0 1em;
 
 }
 
 .card {
     max-width: 40rem
+}
+
+.card-image-top {
+    height: 100%;
+    max-width: 15vw;
 }
 
 .footer {
@@ -41,13 +45,15 @@ Change brings to the css spacelab
     max-width: 120px;
 }
 
-#astuce {
-    max-width: 650px
+#buld {
+    max-height: 40rem;
+    max-width: 40rem;
 }
 
 #closed,
 #reduce {
-    max-width: 200px;
+    max-width: 12rem;
+    max-height: 12rem;
     padding: 1rem
 }
 
