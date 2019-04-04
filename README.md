@@ -59,6 +59,13 @@ Once you have searched for the repository, open the folder with your code editor
 ```
 The database used by default is Sqlite.
 
+For installation  enter in terminal :
+```
+: $ ./bin/console doctrine:create:database
+: $ ./bin/console doctrine:migrations:migrate
+```
+
+
 If you want to use another database please refer to the symfony documentation.
 
 The configuration parameters are in the .env file
