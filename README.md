@@ -6,7 +6,9 @@
 
 ### Context of the project
 
-The Louvre Museum has commissioned you for an ambitious project: to create a new system for booking and managing tickets online to reduce long queues and take advantage of the growing use of smartphones.
+The Louvre Museum has commissioned you for an ambitious project:
+
+ To create a new system for booking and managing tickets online to reduce long queues and take advantage of the growing use of smartphones.
 
 
 #### Production
@@ -19,6 +21,7 @@ The Louvre Museum has commissioned you for an ambitious project: to create a new
 - Html/ Twig
 - CSS
 - jQuery
+- Twig
 - SwifMailer
 - Stripe
 
