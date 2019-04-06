@@ -47,8 +47,6 @@ The Louvre Museum has commissioned you for an ambitious project: to create a new
 
 #### How use the project
 
-To clone the project go to [repo_Github] (https://github.com/illaweb35/repo_Ticketing.git)
-
 You have the choice between downloading the zip, or cloning the deposit.
 
 Once you have searched for the repository, open the folder with your code editor and launch a terminal in the folder, then enter the following statements:
@@ -61,7 +59,7 @@ The database used by default is Sqlite.
 
 For installation  enter in terminal :
 ```
-: $ ./bin/console doctrine:create:database
+: $ ./bin/console doctrine:database:create
 : $ ./bin/console doctrine:migrations:migrate
 ```
 
