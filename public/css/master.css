@@ -2,9 +2,9 @@
 Change brings to the css spacelab
 **/
 .navbar #logo {
-    width: 65%;
     padding: 0 1em 0 1em;
-
+    height: 100%;
+    max-width: 150px;
 }
 
 .card {
@@ -66,21 +66,43 @@ legend {
     max-width: 110px;
 }
 
+.footer {
+    position: relative;
+    bottom: 0;
+    margin-top: 2em;
+    width: 100%;
+    height: 60px;
+    line-height: 30px;
+}
+
 /*Mobile display */
 @media only screen and (max-width: 600px) {
-    .navbar #logo {
-        height: 100%;
-        max-width: 100px;
-        padding-left: 1em
+    body {
+        line-height: 1;
     }
 
-    .footer {
-        position: relative;
-        bottom: 0;
-        margin-top: 2em;
-        width: 100%;
-        height: 60px;
-        line-height: 30px;
+    .navbar #logo {
+        max-width: 100px;
     }
+
+    .jumbotron {
+        padding: 1rem
+    }
+
+    .container {
+
+        width: 80%;
+        padding: 5px
+    }
+
+    .card-body {
+        padding: 1
+    }
+
+    #billet {
+        max-width: 80px;
+    }
+
+
 
 }

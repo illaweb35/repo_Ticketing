@@ -21,7 +21,7 @@
         Billets commandés
         {% endif %}
     </h1>
-    <h2 class="subtitle text-center">Saisi des informations de billet</h2>
+
     <hr>
     {# Start form #}
     {{ form_start(form) }}
@@ -35,9 +35,9 @@
             </div>
             {% endfor %}
         </div>
-        <hr>
+
         <div class="form-group text-center">
-            <button type="submit" class="btn btn-outline-primary">
+            <button type="submit" class="btn btn-outline-primary btn-sm">
                 <i class="fas fa-save"></i>
                 | Enregistrer les billets
             </button>

@@ -9,15 +9,12 @@
 {% endblock %}
 
 {% block body %}
-<div class="container my-5">
+<div class="container my-2">
     <div class="content ">
         <div class="text-center">
             <h1 class="title">
                 Réservation de vos billets
             </h1>
-            <h3 class="subtitle">
-                pour votre prochaine visite au musée du Louvre
-            </h3>
         </div>
         <hr>
         <div class="row justify-content-center">
@@ -75,7 +72,9 @@
                         </label>
                         {{ form_widget(form.typeTicket) }}
                         {{ form_errors(form.typeTicket) }}
-                        <small>Demi-journée à partir de 14 Heures</small>
+                        <p>
+                            <small>Demi-journée à partir de 14 Heures</small>
+                        </p>
                     </div>
                     <hr>
                     <div class="form-group">
@@ -98,4 +97,14 @@
 {{ parent() }}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
 <script src="{{ asset('js/datepicker.js')}}"></script>
+<script>
+    $(function () {
+        var nua = navigator.userAgent
+        var isAndroid = (nua.indexOf('Mozilla/5.0') > -1 && nua.indexOf('Android ') > -1 && nua.indexOf(
+            'AppleWebKit') > -1 && nua.indexOf('Chrome') === -1)
+        if (isAndroid) {
+            $('select.form-control').removeClass('form-control').css('width', '100%')
+        }
+    })
+</script>
 {% endblock %}
