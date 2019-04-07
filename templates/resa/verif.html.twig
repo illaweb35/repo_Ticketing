@@ -46,7 +46,7 @@
                 <div class="col-md-4  mt-3">
                     <div class="card" style="max-width: 18rem">
                         <div class="card-header">
-                            <img src="{{asset('img/logo_2.png')}}" id="billet" alt="Logo musée du Louvre">
+                            <img src="{{asset('img/logo.png')}}" id="billet" alt="Logo musée du Louvre">
                             <p>Billet pour le :
                                 <small>{{resa.visitDate|localizeddate('full','none',null)|capitalize}}</small>
                             </p>
@@ -64,9 +64,10 @@
                                 Age :
                                 <strong>{{ticket.ageClient}}</strong>
 
-                                {% if ticket.ageClient <= 1 %} an {% else %} ans {% endif %}</p> <p>
-                                    <span class="mr-2">Né(e) le :</span>
-                                    <small>{{ ticket.birthday|localizeddate('full','none',null)|capitalize}}</small>
+                                {% if ticket.ageClient <= 1 %} an {% else %} ans {% endif %}</p>
+                            <p>
+                                <span class="mr-2">Né(e) le :</span>
+                                <small>{{ ticket.birthday|localizeddate('full','none',null)|capitalize}}</small>
                             </p>
 
                             <p>
@@ -115,8 +116,9 @@
                         {# Start Stripe Form #}
                         <form action='charge' method="POST"> 
                             {# Start of Stripe's javascript for Checkout #}
-                            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_test_FSdMC4Gb7uNaVNWYCrTULKwB"
-                                data-amount="{{resa.amountResa *100}}" data-name="{{resa.emailResa}}" data-description="Réservation N°: {{resa.codeResa}}"
+                            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                data-key="pk_test_FSdMC4Gb7uNaVNWYCrTULKwB" data-amount="{{resa.amountResa *100}}"
+                                data-name="{{resa.emailResa}}" data-description="Réservation N°: {{resa.codeResa}}"
                                 data-image="{{asset('img/logo.png')}}" data-locale="auto" data-currency="eur"
                                 data-zip-code="true">
                             </script>
