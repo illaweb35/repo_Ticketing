@@ -2,9 +2,10 @@
 Change brings to the css spacelab
 **/
 .navbar #logo {
-    padding: 0 1em 0 1em;
-    height: 100%;
+
     max-width: 150px;
+    padding: 0 1em 0 1em;
+
 }
 
 .card {
@@ -82,7 +83,8 @@ legend {
     }
 
     .navbar #logo {
-        max-width: 100px;
+        height: auto;
+        max-width: 120px;
     }
 
     .jumbotron {
