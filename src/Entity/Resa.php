@@ -95,6 +95,7 @@ class Resa
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Ticket", mappedBy="resa",cascade={"persist"})
+     * @Assert\Valid()
      */
     private $tickets;
 
@@ -114,12 +115,12 @@ class Resa
             $this->createdAt = new \Datetime();
         }
     }
-    public function getId(): ? int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getCodeResa(): ? string
+    public function getCodeResa(): ?string
     {
         return $this->codeResa;
     }
@@ -131,7 +132,7 @@ class Resa
         return $this;
     }
 
-    public function getVisitDate(): ? \DateTimeInterface
+    public function getVisitDate(): ?\DateTimeInterface
     {
         return $this->visitDate;
     }
@@ -143,7 +144,7 @@ class Resa
         return $this;
     }
 
-    public function getTypeTicket(): ? bool
+    public function getTypeTicket(): ?bool
     {
         return $this->typeTicket;
     }
@@ -155,7 +156,7 @@ class Resa
         return $this;
     }
 
-    public function getNbTickets(): ? int
+    public function getNbTickets(): ?int
     {
         return $this->nbTickets;
     }
@@ -167,7 +168,7 @@ class Resa
         return $this;
     }
 
-    public function getEmailResa(): ? string
+    public function getEmailResa(): ?string
     {
         return $this->emailResa;
     }
@@ -179,31 +180,31 @@ class Resa
         return $this;
     }
 
-    public function getAmountResa(): ? float
+    public function getAmountResa(): ?float
     {
         return $this->amountResa;
     }
 
-    public function setAmountResa(? float $amountResa): self
+    public function setAmountResa(?float $amountResa): self
     {
         $this->amountResa = $amountResa;
 
         return $this;
     }
 
-    public function getPaymentTokenStripe(): ? string
+    public function getPaymentTokenStripe(): ?string
     {
         return $this->paymentTokenStripe;
     }
 
-    public function setPaymentTokenStripe(? string $paymentTokenStripe): self
+    public function setPaymentTokenStripe(?string $paymentTokenStripe): self
     {
         $this->paymentTokenStripe = $paymentTokenStripe;
 
         return $this;
     }
 
-    public function getCreatedAt(): ? \DateTimeInterface
+    public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
     }
