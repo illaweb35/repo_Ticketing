@@ -3,6 +3,31 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
+<link rel="stylesheet" type="text/css"
+    href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+<script>
+    window.addEventListener("load", function () {
+        window.cookieconsent.initialise({
+            "palette": {
+                "popup": {
+                    "background": "#edeff5",
+                    "text": "#838391"
+                },
+                "button": {
+                    "background": "#4b81e8",
+                    "text": "#000000"
+                }
+            },
+            "position": "bottom-right",
+            "content": {
+                "message": "Ce site utilise des cookies pour vous garantir la meilleure expérience sur notre site.",
+                "dismiss": "Continuer !",
+                "link": "En savoir plus"
+            }
+        })
+    });
+</script>
 <div class="container">
     <div class="jumbotron mt-5">
         <div class="container text-center mb-5">
