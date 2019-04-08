@@ -46,8 +46,8 @@ class Ticket
      * @Assert\NotBlank(message = "Merci de saisir votre date de naissance !")
      * @Assert\Date
      * @Assert\Range(
-     *      min = "-100 years",
-     *      max = "today")
+     *      min = "-115 years",
+     *      max = "today", minMessage="Vous avez plus de 115 ans !!!",maxMessage="Vous vous interresz déjà à la culture !!!")
      */
     private $birthday;
 
@@ -94,12 +94,12 @@ class Ticket
         }
     }
 
-    public function getId(): ? int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getLastName(): ? string
+    public function getLastName(): ?string
     {
         return $this->lastName;
     }
@@ -111,7 +111,7 @@ class Ticket
         return $this;
     }
 
-    public function getFirstName(): ? string
+    public function getFirstName(): ?string
     {
         return $this->firstName;
     }
@@ -123,7 +123,7 @@ class Ticket
         return $this;
     }
 
-    public function getBirthday(): ? \DateTimeInterface
+    public function getBirthday(): ?\DateTimeInterface
     {
         return $this->birthday;
     }
@@ -135,7 +135,7 @@ class Ticket
         return $this;
     }
 
-    public function getCountry(): ? string
+    public function getCountry(): ?string
     {
         return $this->country;
     }
@@ -147,7 +147,7 @@ class Ticket
         return $this;
     }
 
-    public function getReducePrice(): ? bool
+    public function getReducePrice(): ?bool
     {
         return $this->reducePrice;
     }
@@ -159,7 +159,7 @@ class Ticket
         return $this;
     }
 
-    public function getPriceTicket(): ? float
+    public function getPriceTicket(): ?float
     {
         return $this->priceTicket;
     }
@@ -171,7 +171,7 @@ class Ticket
         return $this;
     }
 
-    public function getCreatedAt(): ? \DateTimeInterface
+    public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
     }
@@ -183,12 +183,12 @@ class Ticket
         return $this;
     }
 
-    public function getResa(): ? Resa
+    public function getResa(): ?Resa
     {
         return $this->resa;
     }
 
-    public function setResa(? Resa $resa): self
+    public function setResa(?Resa $resa): self
     {
         $this->resa = $resa;
 
