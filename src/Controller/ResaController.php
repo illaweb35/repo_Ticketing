@@ -214,6 +214,6 @@ class ResaController extends AbstractController
             return $this->redirectToRoute('resa_verif');
         }
 
-        return $this->render('resa/success.html.twig');
+        return $this->render('resa/verif.html.twig');
     }
 }
